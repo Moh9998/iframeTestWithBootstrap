@@ -342,7 +342,53 @@
              <div class="voice_box drag_resize" id="moving" onclick="PlayGame()" style="    cursor: n-resize;height: 47.38614%;left: 10.8238%;top: 23.3247%;width: 77.894%;"></div>
 
              <button class="btn btn-dark col-1 p-2 position-absolute flexCenter text-bg-danger translatex(-50%)  translatey(-50%) " style="top: 20%;
-             left: 45%;">ClickMe</button>
+             left: 45%;" onclick="openModal()">ClickMe</button>
+             <div id="myModal" class="modal fade" role="dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <span style="color:#fff;" onclick="closeModal()" class="close">&times;</span><br />
+                    <h3 align='center'>Welcome to our website!</h3></p>
+                    <p align='center'>This website is designed to help you learn English. You can learn English by playing games, watching videos and reading stories. You can also take quizzes to test your knowledge.</p>
+                    <p align='center'>We hope you enjoy learning English with us!</p>
+                    <a href="https://mdbootstrap.com/login/"><input type=submit value="Login"></a>&nbsp;&nbsp;<a
+                        href="https://mdbootstrap.com/registration/"><input type=submit value="Register"></a>
+                        </div>
+                        </div>
+                        <script>
+                        function closeModal() {
+                        document.getElementById('myModal').style.display = "none";
+                        }
+                        </script>
+                        <script>
+                        window.onload = function() {
+                        document.getElementById('myModal').style.display = "block";
+                        }
+                        </script>
+                        <script>
+                        function PlayGame() {
+                        document.getElementById('myModal').style.display = "none";
+                        document.getElementById('game-window').style.display = "flex";
+                        }
+                        </script>
+                        <script>
+                        function ResetPosition() {
+                        document.getElementById('myModal').style.display = "none";
+                        document.getElementById('game-window').style.display = "flex";
+                        }
+                        </script>
+                        <script>
+                        function replayAudio(audioId) {
+                        var audio = document.getElementById(audioId);
+                        audio.currentTime = 0;
+                        audio.play();
+                        }
+                        </script>
+                        <script>
+                        function openModal() {
+                        document.getElementById('myModal').style.display = "block";
+                        }
+                        </script>
+                </div>
              </section>
              
     <article id="game-window" class="game-main-section" onmousemove="move(event)" ontouchmove="move(event)"
