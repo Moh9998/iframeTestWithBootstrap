@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+</html>
+
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+
+    <style>
+        body {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .img_bg_container {
+            width: 100%;
+            height: fit-content;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+
+        .voice_box {
+            position: absolute;
+            width: 120px;
+            padding: 5px;
+            border: 1px solid;
+        }
+        * {
+        user-select: none;
+    }
+    .target_container{
+        width: 200px;
+    }
+    .target_container img{
+            height: 125px;
+            margin: 5px;
+        }
+    .board {
+        border: 5px solid;
+        border-radius: 8px;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin: 5px;
+    }
+
+    .game-main-section * {
+        z-index: 10;
+        text-align: center;
+        touch-action: none;
+        user-select: none;
+        
+    }
+
+    .game-main-section {
+        z-index: 8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: scroll;
+        width: 100%;
+        display: none;
+    }
+
+    .hide-from-dom {
+        display: none;
+    }
+
+    .inner-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .inner-wrapper h2 {
+        margin: 5px;
+        font-size: 1.4rem;
+    }
+
+    .inner-wrapper h3 {
+        margin: 3px;
+        font-size: 1rem;
+    }
+
+    .basket-wrapper {
+        width: 176px;
+        height: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: -10px;
+
+    }
+
+    .flexCenter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .basket-image {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .small-size-image {
+        width: 56px;
+        margin: 3px;
+    }
+
+    .normal-size-image {
+        width: 120px;
+         height: 100px;
+        margin: 3px;
+        border: black solid 2px;
+        border-radius: 20%;
+        background-color: aqua;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+
+    }
+  
+
+    .drop-target_containers-wrapper {
+        width: 208px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 0;
+
+    }
+
+    .bounce-animation {
+        animation: bounce 1s infinite;
+    }
+
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+
+        50% {
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+
+    .flex-col {
+        flex-direction: column !important;
+    }
+
+
+    .win-animation {
+        width: 60%;
+        height: 40%;
+
+    }
+
+    .win-animation-section {
+        width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: white;
+    padding-top: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    /* display: flex; */
+}
+    
+
+    .win-animation-section #win-message {
+        font-size: 1.5rem;
+    }
+
+
+    @media (min-width:768px) {
+        .board {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            
+        }
+       
+        .board p{
+            font-size: 2.3rem;
+    font-weight: bold;
+    background-color: #ff000000;
+    border: none;
+        }
+      
+        .basket-wrapper {
+            width: 320px;
+            height: 320px;
+        }
+
+        .normal-size-image {
+            width: 120px;
+            padding: 25px;
+             height: 100px;
+             background-color: aquamarine;
+             text-align: center;
+
+        }
+        .target_container{
+            width: 260px;
+        }
+        .target_container img{
+            height: 280px;
+        }
+        
+  
+        
+
+        .small-size-image {
+            width: 96px;
+        }
+
+        .drop-target_containers-wrapper {
+            flex-direction: row;
+            width: 72%;
+        }
+
+        .drop-target_containers-wrapper h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 10px;
+        }
+
+
+    }
+
+    @media (min-width:1024px) {
+        .win-animation {
+            width: 300px;
+            height: 300px;
+        }
+    }
+
+
+    .play-game-text-button {
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 7px;
+        padding: 0px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border: none;
+        color: #FF4500 !important;
+        background: white !important;
+        padding: 8px;
+        animation: ClickMe 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+
+    .play-game-basket {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+
+
+    @keyframes ClickMe {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .5;
+        }
+    }
+
+        @media (min-width:1024px) {
+            .img_bg_container {
+                width: 50%;
+            }
+        }
+    </style>
+
+
+    <section class="img_bg_container">
+        <img class="img" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@كتاب_العلوم_الاول_الابتدائي-min-037.jpg">
+    
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: move; left: 36.0298%; top: 4.43814%; height: 3.87927%; width: 27.894%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: nw-resize; top: 9.36941%; height: 2.89301%; left: 77.6383%; width: 12.5523%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: s-resize; height: 3.22176%; left: 40.9112%; top: 12.8213%; width: 49.2794%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: s-resize; height: 4.04364%; left: 61.1344%; top: 73.3116%; width: 27.894%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: move; height: 3.87927%; left: 51.6039%; top: 77.0922%; width: 37.4245%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: sw-resize; height: 3.38614%; left: 73.4542%; top: 80.8728%; width: 15.5742%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: sw-resize; height: 3.38614%; left: 56.2529%; top: 84.3247%; width: 33.0079%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: nw-resize; height: 3.55051%; left: 38.5867%; top: 81.0372%; width: 34.6351%;"></div>
+             
+             <div class="voice_box drag_resize" id="moving" onclick="replayAudio('')" style="cursor: n-resize; height: 3.38614%; left: 28.8238%; top: 84.3247%; width: 27.894%;"></div>
+             <div class="voice_box drag_resize" id="moving" onclick="PlayGame()" style="    cursor: n-resize;height: 47.38614%;left: 10.8238%;top: 23.3247%;width: 77.894%;"></div>
+
+             <button class="btn btn-dark col-1 p-2 translate-middle">ClickMe</button>
+             </section>
+             
+    <article id="game-window" class="game-main-section" onmousemove="move(event)" ontouchmove="move(event)"
+    onmouseup="drop(event)" ontouchend="drop(event)">
+
+    <section class="inner-wrapper">
+
+        <section id="basket-wrapper" class="basket-wrapper">
+         
+
+            <section class="flexCenter" id="things">
+               
+                   <p   draggable="false"
+                   class="normal-size-image" onmousedown="pickup(event)" ontouchstart="pickup(event)"
+                   data-name="plants">نباتات</p>
+                    
+
+               <p   draggable="false"
+                   class="normal-size-image" onmousedown="pickup(event)" ontouchstart="pickup(event)"
+                   data-name="alive-things">حيوانات</p>
+
+                   <p   draggable="false"
+                   class="normal-size-image" onmousedown="pickup(event)" ontouchstart="pickup(event)"
+                   data-name="not-alive-things">اشياء غير حية</p>
+
+                
+            </section>
+        </section>
+
+
+        <section class="drop-target_containers-wrapper">
+            <section class="target_container">
+                <section id="plants" class="board" onmouseup="drop(event)" ontouchend="drop(event)">
+                </section>
+                <img src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@spring.png" alt="" width="100%" height="100%">
+
+            </section>
+            
+            <section class="target_container">
+                <section  id="not-alive-things" class="board" onmouseup="drop(event)" ontouchend="drop(event)">
+                </section>
+                <img src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@szu3_04vk_220104.jpg" alt="" width="100%" height="100%">
+            </section>
+           
+
+            <section class="target_container">
+                <section id="alive-things" class="board" onmouseup="drop(event)" ontouchend="drop(event)">
+                </section>
+                 
+                <img src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@خروف_4x-8.png" alt="" width="100%" height="100%">
+            </section>
+          
+          
+                
+          
+           
+
+         
+        </section>
+        <audio autoplay="true" muted="true" id="win"
+        src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@win_sound.wav"></audio>
+        <audio autoplay="true" muted="true" id="lose"
+            src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@lose_sound.mp3"></audio>
+
+    </section>
+    <section id="win-window" class="win-animation-section">
+        <lottie-player id="win-animation"
+            src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@win_animation.json"
+            background="transparent" speed="1" loop="" autoplay="" class="win-animation"></lottie-player>
+        <h2 id="win-message">أحسنت لنبدأ الأختبار</h2>
+        <button id="win-button" class="window-restart-button" >إضغط هنا لبدء
+            الأختبار</button>
+    
+    </section>
+    <section id="lose-window" class="win-animation-section">
+        <lottie-player id="win-animation"
+            src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@lose_animation.json"
+            background="transparent" speed="1" loop="" autoplay="" class="win-animation"></lottie-player>
+        <h2 id="lose-message">إجابة خطأ</h2>
+        <button id="lose-button" class="window-restart-button">أعد المحاولة</button>
+    </section>
+
+</article>
+
+<script >
+    
+let moving = null;
+let target = null;
+let winAudio = document.getElementById('win')
+let loseAudio = document.getElementById('lose')
+
+
+function drop(event) {
+if (moving) {
+    if (event.currentTarget.tagName !== 'HTML' ) {
+        if (event.clientX) {
+            target = document.elementFromPoint(event.clientX, event.clientY);
+
+            if (target.id == "plants" || 
+                target.id == "alive-things"|| 
+                target.id == "not-alive-things" ) {
+                   
+                if(target.id == moving.dataset.name){
+                    target.style.borderRadius='10px'
+                    target.style.border='5px solid green '
+                    target.appendChild(moving)
+                    winAudio.muted = false
+                    winAudio.currentTime = 0
+                    winAudio.play()
+                    
+                   
+                }else {
+                    target.style.border='5px solid red ';
+                    target.style.borderRadius='10px';
+                    loseAudio.muted = false
+                    loseAudio.currentTime = 0
+                    loseAudio.play()
+                    target.appendChild(moving)  
+                }
+                    
+              }
+              else {
+                document.getElementById("things").appendChild(moving)
+            } 
+         
+             }
+             
+
+        else {
+            target = document.elementFromPoint(event.changedTouches[0]. clientX, event.changedTouches[0].clientY);
+
+            if (target.id == "plants" || 
+            target.id == "alive-things"|| 
+            target.id == "not-alive-things" ) {
+                   
+                if(target.id == moving.dataset.name){
+                    target.style.borderRadius='10px'
+                    target.style.border='5px solid green '
+
+                    target.appendChild(moving)
+                    winAudio.muted = false
+                    winAudio.currentTime = 0
+                    winAudio.play()
+                }else {
+                    target.style.border='5px solid red ';
+                    target.style.borderRadius='10px';
+                    loseAudio.muted = false
+                    loseAudio.currentTime = 0
+                    loseAudio.play()
+                    target.appendChild(moving)  
+                }
+                    
+              }
+              else {
+                document.getElementById("things").appendChild(moving)
+            } 
+        }
+    }
+    let elements = document.querySelectorAll("#things p")
+
+
+        if (elements.length <= 0) {
+
+            let aliveThingElements = document.querySelectorAll("#alive-things p")
+            let notAliveThingsElements = document.querySelectorAll("not-alive-things p")
+            let plants= document.querySelectorAll('plants p')
+            let wrongAnswers = []
+
+            for (i of aliveThingElements) {
+                if (i.dataset.name !== "alive-things") wrongAnswers.push(false)
+            }
+            for (i of notAliveThingsElements) {
+                if (i.dataset.name !== "not-alive-things") wrongAnswers.push(false) 
+            }
+            for (i of plants) {
+                if (i.dataset.name !== "plants") wrongAnswers.push(false) 
+            }
+            if (!wrongAnswers.includes(false)) {
+                let winButton = document.querySelector("#win-button")
+                document.querySelector("#win-window").style.display = "flex"
+                document.querySelector("#win-message").innerHTML = "أحسنت إجابة صحيحة"
+                winButton.innerHTML = "أضغط هنا لإكمال القرائة";
+                winButton.style.borderRadius='10px';
+                winButton.style.backgroundColor='#ff9933'
+                winButton.style.color="white";
+                winButton.style.paddingTop ='3%';
+                winButton.style.paddingBottom ='3%';
+                winButton.style.paddingLeft ='5%';
+                winButton.style.paddingRight ='5%';
+                winButton.style.fontSize ='1.5rem';
+
+
+
+                winButton.addEventListener("click", () => {
+                    document.querySelector('#win-window').style.display = "none"
+                     document.querySelector('.img_bg_container').style.display = "flex"
+                     document.querySelector('#game-window').style.display='none';
+                     ResetPosition();
+                    
+                })
+            }
+            else{
+                let loseButton = document.querySelector("#lose-button")
+                document.querySelector("#lose-window").style.display = "flex"
+                document.querySelector("#lose-message").innerHTML = "إجابة خاطئة";
+                loseButton.innerHTML = "أعد المحاولة"
+                loseButton.addEventListener("click", () => {
+                    document.querySelector('#lose-window').style.display = "none"
+                
+                     document.querySelector('#game-window').style.display = "flex"
+                     ResetPosition();
+
+
+                })
+            }
+
+        }
+
+// reset our element
+                                 moving.style.left = '0rem';
+                                moving.style.top = '-10rem';
+                                moving.style.height = '';
+                                moving.style.width = '';
+                                moving.style.position = 'static';
+                                moving.style.zIndex = '5';
+                                moving.style.transform = ''
+                                moving.style.border='';
+                                moving.style.borderRadius='';
+                                moving.style.background='';
+                                moving = null;
+}
+}
+
+
+function pickup(event) {
+moving = event.target;
+moving.style.zIndex = '8';
+moving.style.position = "fixed"
+
+}
+
+
+function move(event) {
+if (moving) {
+    if (event.clientX) {
+        // Calculate the new translation value.
+        var translationX = event.clientX - moving.offsetLeft;
+        var translationY = event.clientY - moving.offsetTop;
+        // Set the new translation value.
+        moving.style.transform = "translate(" + translationX + "px, " + translationY + "px)";
+    } else {
+        // Calculate the new translation value.
+        var translationX = event.changedTouches[0].clientX - moving.offsetLeft;
+        var translationY = event.changedTouches[0].clientY - moving.offsetTop;
+        moving.style.transform = "translate(" + translationX + "px, " + translationY + "px)";
+    }
+}
+}
+
+  
+
+   
+
+</script>
+<script src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@lottifiles.js"></script>
+    
+
+
+ <script>
+
+    function playrootVideo(videoId) {
+        var rVideo = document.getElementById(videoId);
+        var pic = document.getElementById('rootw');
+
+        rVideo.play();
+        pic.style.backgroundColor = 'white';
+        rVideo.style.display = "block";
+
+
+
+    }
+</script>
+
+
+<!-- video animation function -->
+    <script>
+function playHiddenVideo(videoId) {
+var video = document.getElementById(videoId);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Adjust the transparency as desired
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+
+// Play the video
+video.play();
+
+// Set video properties
+var videoSize = Math.min(window.innerWidth, window.innerHeight) * 0.6; // Adjust the size as desired
+var videoMargin = videoSize / 2;
+
+// Center the video on the page
+video.style.display = 'block';
+video.style.position = 'fixed';
+video.style.width = videoSize + 'px';
+video.style.height = videoSize + 'px';
+video.style.top = '50%';
+video.style.left = '50%';
+video.style.transform = 'translate(-50%, -50%)';
+video.style.zIndex = '10000';
+
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeVideo;
+document.body.appendChild(closeButton);
+
+// Listen for the 'ended' event
+
+        function closeVideo() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+video.pause ();
+video.style.display = 'none';
+}
+}
+
+    </script>
+<!-- iframe -->
+    <script>
+function showIframe(id) {
+var iframe = document.getElementById(id);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeIframe;
+document.body.appendChild(closeButton);
+
+// Center the iframe on the page
+iframe.style.display = 'block';
+iframe.style.position = 'fixed';
+iframe.style.top = '50%';
+iframe.style.left = '50%';
+iframe.style.width = '95%';
+iframe.style.height = '95%';
+iframe.style.transform = 'translate(-50%, -50%)';
+iframe.style.zIndex = '10000';
+// Function to close the iframe and remove the backdrop
+function closeIframe() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+iframe.style.display = 'none';
+}
+
+// Listen for the 'ended' event on the iframe's contentWindow
+    closeButton.addEventListener('click', closeIframe);
+}
+
+    </script>
+    <script>
+        function resizeBackgroundImages() {
+            // Get all elements with class 'img'
+            let imgElements = document.querySelectorAll('.img_fr');
+            // Loop through each element
+            imgElements.forEach(function(element) {
+                // Get the height and width of the element
+                let height = element.offsetHeight;
+                let width = element.offsetWidth;
+                // Get all elements with class 'row'
+                let rowElements = document.querySelectorAll('.img_bg_container');
+                // Loop through each element
+                rowElements.forEach(function(rowElement) {
+                // Set the background size of the element to the height and width of the 'img' element
+                rowElement.style.backgroundSize = width + "px " + height + "px";
+                });
+            });
+        }
+        window.addEventListener('load', resizeBackgroundImages);
+    </script>
+<!-- pictures script -->
+    <script>
+            function showPictureWithAudio(imageId, audioId) {
+    // Create backdrop overlay
+    var backdrop = document.createElement('div');
+    backdrop.style.position = 'fixed';
+    backdrop.style.top = '0';
+    backdrop.style.left = '0';
+    backdrop.style.width = '100%';
+    backdrop.style.height = '100%';
+    backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+    backdrop.style.zIndex = '9999';
+    document.body.appendChild(backdrop);
+
+    // Get image and audio elements by ID
+    var image = document.getElementById(imageId);
+    var audio = document.getElementById(audioId);
+
+    // Set image styles
+    image.style.display = 'none';
+    image.style.position = 'fixed';
+    image.style.top = '50%';
+    image.style.left = '50%';
+    image.style.transform = 'translate(-50%, -50%)';
+    image.style.zIndex = '10000';
+
+    // Event listener for audio ended
+        function close_audio() {
+            // Hide the image
+            image.style.display = 'none';
+
+            // Remove the backdrop
+            document.body.removeChild(backdrop);
+
+            audio.pause
+
+            document.body.removeChild(closeButton);
+
+        };
+
+    // Event listener for audio play
+    audio.addEventListener('play', function() {
+        // Show the image
+        image.style.display = 'block';
+    });
+
+    // Play the audio
+    audio.play();
+
+    var closeButton = document.createElement('button');
+    closeButton.innerHTML = 'اغلاق';
+    closeButton.style.position = 'fixed';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.zIndex = '10001';
+    closeButton.onclick = close_audio;
+    document.body.appendChild(closeButton);
+        }
+
+
+
+
+
+    </script>
+    <!-- vioce scripts -->
+    <script>
+        function replayAudio(id) {
+        // Pause all audio elements
+        var audioElements = document.getElementsByTagName('audio');
+        for (var i = 0; i < audioElements.length; i++) {
+            var audio = audioElements[i];
+            if (audio !== null && audio.id !== id) {
+            audio.pause();
+            }
+        }
+
+        // Replay the selected audio
+        var selectedAudio = document.getElementById(id);
+        if (selectedAudio !== null) {
+            selectedAudio.currentTime = 0;
+            selectedAudio.play();
+        }
+        }
+
+    </script>
+    <script>
+        function PlayGame(){
+            var Page = document.querySelector('.img_bg_container')
+            Page.style.display = 'none';
+            var Page = document.querySelector('#game-window')
+            Page.style.display = 'block';
+
+        }
+
+
+    </script>
+
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/tgs-player.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+
+</html>
